@@ -1,61 +1,80 @@
-# Data Sources: API Files Collections
-# Formats: JSON CSV XML
+#Задача 1:
 
-# Example of a JSON file
-import json
+# import json
+# import requests
 
-data = json.loads('{"name": "John", "age": 30, "city": "New York"}')
-print("JSON Data:")
-print(data)  # Print the entire JSON data
-print("Name:", data["name"])  # Print the name
+# response = requests.get("https://dummyjson.com/products")
 
-import requests
+# if response.status_code == 200:
+#     data = response.json()
+#     print(f'Title: {data["products"][0]["title"]}')  
+#     print(f'Category: {data["products"][0]["category"]}')  
+#     print(f'Rating: {data["products"][0]["rating"]}/5')  
+#     print(f'Price: {data["products"][0]["price"]}$') 
+#     total_price = 0
+#     total_products = len(data["products"])
+#     for product in data["products"]:
+#         total_price += product["price"]
+#         if product["rating"] == 5:
+#             print(f"Rating is 5 for product: {product['title']}")
+#             print(f'Title: {product["title"]}')  
+#         if not product["rating"] == 5:
+#             print(f"Product with rating 5 not found")
+#             break
+#     print(f'Avg price: {total_price / total_products}$') 
+# else:
+#     print(f"Error: {response.status_code}")
+#     print("Failed to retrieve data.")
 
-response = requests.get("https://dummyjson.com/products")
 
-if response.status_code == 200:
-    data = response.json()
-    print(f"Price: {data["products"][0]['price']}$")  # Print the first product
-else:
-    print(f"Error: {response.status_code}")
-    print("Failed to retrieve data.")
+# response = requests.get("https://google.com/")
 
-response = requests.get("https://google.com/")
+# if response.status_code == 200:
+#     print("Google is up and running!")
+#     print(f"Response time: {response.elapsed.total_seconds()} seconds")
+#     print(f"Response content: {response.content[:100]}...")  # Print the first 100 characters of the response
 
-if response.status_code == 200:
-    print("Google is up and running!")
-    print(f"Response time: {response.elapsed.total_seconds()} seconds")
-    print(f"Response content: {response.content[:100]}...")  # Print the first 100 characters of the response
 
-# Example of a CSV file
-import pandas as pd
+# #Задача 2:
 
-df = pd.read_csv("./assets/products.csv", delimiter=",", quotechar='"')
-print("CSV Data:")
-print(df.head())  # Print the first few rows of the DataFrame
+# from bs4 import BeautifulSoup
 
-print("CSV Data Types:")
-print(df.dtypes)  # Print the data types of each column
+# response = requests.get("https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml")
 
-print("Price:", df["Price"][0], "$")  # Print the price of the first product
+# if response.status_code == 200:
+    
+#     root = BeautifulSoup(response.text, "xml")
 
-# Example of an XML file
-from bs4 import BeautifulSoup
+#     usd = root.find("Cube").find("Cube", {"currency": "USD"})
+#     if usd:
+#         print("USD Rate:", usd["rate"])
+#     else:
+#         print("USD rate not found in the XML data.")
 
-root = BeautifulSoup("""
-    <root>
-        <name>John</name>
-        <age>30</age>
-    </root>
-""", "xml")
+#     foot = root.find("Cube").find("Cube", {"currency": "GBP"})
+#     if foot:
+#         print("GBP Rate:", foot["rate"])
+#     else:
+#         print("GBP rate not found in the XML data.")
+# else:
+#     print(f"Error: {response.status_code}")
+#     print("Failed to retrieve data.") 
 
-print("XML Data:")
-print(root.prettify())  # Print the entire XML data
+#Задача 3:
 
-print("Name:", root.find("name").text)  # Print the name
+# import pandas as pd
 
-# Example of a HTML content
-html = "<html><body><h1>Hello, world!</h1></body></html>"
-soup = BeautifulSoup(html, "lxml")  # or "html.parser"
+# df = pd.read_csv("./assets/products.csv", delimiter=",", quotechar='"')
+# print("CSV Data:")
+# print(df.head()) 
 
-print(soup.h1.text)  # Output: Hello, world!
+# passengers_33_yo = df[df["Age"] <= 33]  
+
+# print("Passengers aged 33 or younger:")
+# print(passengers_33_yo["Name"])
+
+# current_year = 1912
+# passengers_33_yo["birth_year"] = current_year - passengers_33_yo["Age"]
+
+# print(passengers_33_yo[["Name","Age","birth_year"]])
+
